@@ -1,6 +1,6 @@
 //sound network
-SinOsc w => dac;
-SawOsc s => dac;
+SqrOsc w => dac;
+SinOsc s => dac;
 
 //define musical units
 0.33::second => dur quarter;
@@ -10,7 +10,7 @@ SawOsc s => dac;
 0.25::quarter => dur sixteenth;
 
 //define musical notes for song
-//bass range
+//low octave vars
 82.41 => float eBass;
 87.31 => float fBass;
 92.50 => float fSharpBass;
@@ -24,7 +24,7 @@ SawOsc s => dac;
 146.83 => float dBass;
 155.56 => float dSharpBass;
 
-//midrange
+//midrange vars
 eBass*2 => float eMid;
 fBass*2 => float fMid;
 fSharpBass*2 => float fSharpMid;
@@ -41,10 +41,13 @@ dSharpBass*2 => float dSharpMid;
 //movement variables
 20 => int moveOne;
 //define volume presets
-0.05 => w.gain;
+0 => w.gain;
+1 => s.gain;
 //Scale Step 1
 for ( 0 => int i; i < 4; i++ )
 {
+    <<< "F,bitch!" >>>;
+    
     fBass => s.freq;
     1::quarter => now; 
    
@@ -68,14 +71,14 @@ for ( 0 => int i; i < 4; i++)
 for ( 0 => int i; i < 4; i++)
 {
     gSharpBass => s.freq;
-    1::quarter => now;
+    1::eighth => now;
     
 }
 //Scale Step 4
 for ( 0 => int i; i < 4; i++)
 {
     bFlatBass => s.freq;
-    1::quarter => now;
+    1::eighth => now;
     
 }
 //Scale Step 5
@@ -102,16 +105,42 @@ for ( 0 => int i; i < 4; i++)
 //Scale Step 8
 for ( 0 => int i; i < 4; i++)
 {
+    <<< "Scale 1 Ends" >>>;
     fBass*2 => s.freq;
+    1::quarter => now;
+
+}
+
+.1 => w.gain;
+//Scale Step 1
+for ( 0 => int i; i < 4; i++ )
+{   
+    bFlatBass*6 => w.freq;
+    fMid*2 => s.freq;
+    1::quarter=> now; 
+  
+}
+//Scale Step 2
+for ( 0 => int i; i < 4; i++)
+{
+    fBass => s.freq;
+    1::eighth => now;
+}
+//Scale Step 3
+for ( 0 => int i; i < 4; i++)
+{
+    gSharpBass => s.freq;
     1::quarter => now;
     
 }
 
 //Scale Step 1
 for ( 0 => int i; i < 4; i++ )
-{
-    fBass*2 => s.freq;
-    1::quarter => now; 
+{   
+    gSharpBass => w.freq;
+    1::eighth;
+    fMid*2 => s.freq;
+    1::quarter=> now; 
    
   /*  if ( i <4 )
     {
@@ -126,8 +155,8 @@ for ( 0 => int i; i < 4; i++ )
 //Scale Step 2
 for ( 0 => int i; i < 4; i++)
 {
-    eBass => s.freq;
-    1::quarter => now;
+    fBass => s.freq;
+    1::eighth => now;
 }
 //Scale Step 3
 for ( 0 => int i; i < 4; i++)
@@ -136,6 +165,7 @@ for ( 0 => int i; i < 4; i++)
     1::quarter => now;
     
 }
+
 //Scale Step 4
 for ( 0 => int i; i < 4; i++)
 {
