@@ -1,0 +1,12 @@
+//random number generator
+
+//infinite loop
+
+while( true )
+{
+    Math.random() => int i; // generate random int
+    
+    <<< i >>>;
+    .5::second => now;
+    
+}
