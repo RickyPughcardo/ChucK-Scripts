@@ -1,0 +1,8 @@
+//sound chain
+SndBuf snare => dac;
+
+//aray of strings(paths)
+string snare_samples[3];
+
+//load array with file paths
+me.dir()
